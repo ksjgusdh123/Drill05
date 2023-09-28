@@ -44,7 +44,7 @@ def move_boy(boy, hands):
         hand.draw(hand_point[0], hand_point[1])
         update_canvas()
         frame = (frame + 1) % 8
-        delay(0.05)
+        delay(0.05) 
     boy_run = False
 
 
