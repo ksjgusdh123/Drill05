@@ -20,30 +20,44 @@ def handle_events():
             running = False
     pass
 
+def move_boy(boy, hands):
+    global boy_run
+    global boy_point
+    global frame
+    x1, y1 = boy[0], boy[1]
+    x2, y2 = hands[0], hands[1]
+
+    for i in range(0, 100 + 1, 1):
+        clear_canvas()
+        TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
+        character.clip_draw(frame * 100, 100 * 1, 100, 100, boy_point[0], boy_point[1])
+        t = i / 100
+        boy_point[0] = (1 - t) * x1 + t * x2
+        boy_point[1] = (1 - t) * y1 + t * y2
+        hand.draw(hand_point[0], hand_point[1])
+        update_canvas()
+        frame = (frame + 1) % 8
+        delay(0.05)
+        handle_events()
+
+
+
 running = True
-x, y = TUK_WIDTH // 2, TUK_HEIGHT // 2
+boy_point = [TUK_WIDTH // 2, TUK_HEIGHT // 2]
 hand_point = [0, 0]
 frame = 0
 boy_run = False
 
 
 while running:
-    clear_canvas()
-    TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
-    character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
-
     if boy_run:
+        move_boy(boy_point,hand_point)
         pass
     else:
         hand_point = [random.randint(50, 750), random.randint(50, 550)]
         boy_run = True
 
-    hand.draw(hand_point[0], hand_point[1])
-    update_canvas()
-    frame = (frame + 1) % 8
-    delay(0.05)
-    handle_events()
-
+handle_events()
 close_canvas()
 
 
