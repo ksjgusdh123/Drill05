@@ -35,7 +35,7 @@ while running:
     if boy_run:
         pass
     else:
-        hand_point = [random.randint(- 300, 300), random.randint(-300, 300)]
+        hand_point = [random.randint(50, 750), random.randint(50, 550)]
         boy_run = True
 
     hand.draw(hand_point[0], hand_point[1])
