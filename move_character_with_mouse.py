@@ -30,7 +30,7 @@ def move_boy(boy, hands):
         boy_left = True
     else:
         boy_left = False
-    for i in range(0, 100 + 1, 10):
+    for i in range(0, 100 + 1, 5):
         clear_canvas()
         TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
 
