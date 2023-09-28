@@ -38,7 +38,7 @@ def move_boy(boy, hands):
         update_canvas()
         frame = (frame + 1) % 8
         delay(0.05)
-        handle_events()
+    boy_run = False
 
 
 
