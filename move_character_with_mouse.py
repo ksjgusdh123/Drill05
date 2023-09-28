@@ -26,11 +26,18 @@ def move_boy(boy, hands):
     global frame
     x1, y1 = boy[0], boy[1]
     x2, y2 = hands[0], hands[1]
-
-    for i in range(0, 100 + 1, 1):
+    if(boy[0] > hands[0]):
+        boy_left = True
+    else:
+        boy_left = False
+    for i in range(0, 100 + 1, 10):
         clear_canvas()
         TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
-        character.clip_draw(frame * 100, 100 * 1, 100, 100, boy_point[0], boy_point[1])
+
+        if(boy_left):
+            character.clip_composite_draw(frame * 100, 100 * 1, 100, 100, 0, 'h', boy_point[0], boy_point[1], 100, 100)
+        else:
+            character.clip_draw(frame * 100, 100 * 1, 100, 100, boy_point[0], boy_point[1])
         t = i / 100
         boy_point[0] = (1 - t) * x1 + t * x2
         boy_point[1] = (1 - t) * y1 + t * y2
@@ -52,12 +59,11 @@ boy_run = False
 while running:
     if boy_run:
         move_boy(boy_point,hand_point)
-        pass
     else:
         hand_point = [random.randint(50, 750), random.randint(50, 550)]
         boy_run = True
 
-handle_events()
+    handle_events()
 close_canvas()
 
 
